@@ -61,13 +61,11 @@ mongodb://localhost:27017/
 ``` 
 - Use the database:
 
-js
 ``` bash
 use plp_bookstore
 ``` 
 - Test queries like:
 
-js
 ``` bash
 db.books.find({ genre: "Fiction" })
 db.books.find({ price: { $gt: 10 } }).sort({ price: 1 })
