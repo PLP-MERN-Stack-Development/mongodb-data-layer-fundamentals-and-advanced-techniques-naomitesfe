@@ -1,59 +1,75 @@
-# MongoDB Fundamentals - Week 1
+# MongoDB Data Layer Fundamentals - Week 1
 
-## Setup Instructions
+This project contains the Week 1 assignment for **Full stack web development MERN Stack**.  
+It demonstrates creating a MongoDB database, performing CRUD operations, running queries, using aggregation pipelines, and implementing indexes for performance.
 
-Before you begin this assignment, please make sure you have the following installed:
+## Project Structure
 
-1. **MongoDB Community Edition** - [Installation Guide](https://www.mongodb.com/docs/manual/administration/install-community/)
-2. **MongoDB Shell (mongosh)** - This is included with MongoDB Community Edition
-3. **Node.js** - [Download here](https://nodejs.org/)
-
-### Node.js Package Setup
-
-Once you have Node.js installed, run the following commands in your assignment directory:
-
-```bash
-# Initialize a package.json file
-npm init -y
-
-# Install the MongoDB Node.js driver
-npm install mongodb
-```
-
-## Assignment Overview
-
-This week focuses on MongoDB fundamentals including:
-- Creating and connecting to MongoDB databases
-- CRUD operations (Create, Read, Update, Delete)
-- MongoDB queries and filters
-- Aggregation pipelines
-- Indexing for performance
-
-## Submission
-
-Complete all the exercises in this assignment and push your code to GitHub using the provided GitHub Classroom link.
-
-## Getting Started
-
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install MongoDB locally or set up a MongoDB Atlas account
-4. Run the provided `insert_books.js` script to populate your database
-5. Complete the tasks in the assignment document
-
-## Files Included
-
-- `Week1-Assignment.md`: Detailed assignment instructions
-- `insert_books.js`: Script to populate your MongoDB database with sample book data
+- `insert_books.js` - Script to populate the `plp_bookstore` database with sample books.
+- `queries.js` - Script containing MongoDB queries for CRUD, sorting, pagination, and aggregation.
+- `README.md` - Project instructions and setup guide.
 
 ## Requirements
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- MongoDB Shell (mongosh) or MongoDB Compass
+- Node.js v18 or higher
+- MongoDB Community Edition (local) or MongoDB Atlas account
+- MongoDB Shell (`mongosh`) or MongoDB Compass
 
-## Resources
+## Setup Instructions
 
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [MongoDB University](https://university.mongodb.com/)
-- [MongoDB Node.js Driver](https://mongodb.github.io/node-mongodb-native/) 
+1. **Clone the repository** (already done if using GitHub Classroom):
+   ```bash
+   git clone <your-repo-url>
+   cd <project-folder>
+
+## Install dependencies:
+
+``` bash
+npm install
+Run the insert_books.js script to populate the database:
+``` 
+
+``` bash
+node insert_books.js
+``` 
+This will insert 12 sample books into the plp_bookstore database in the books collection.
+
+- Run the queries.js script to perform CRUD operations, sorting, pagination, and aggregation:
+
+``` bash
+node queries.js
+``` 
+# MongoDB Queries Examples
+- Find all books in a genre
+- Find books published after a certain year
+- Update price of a book
+- Delete a book
+- Sorting by price (ascending/descending)
+- Pagination using limit and skip
+- Aggregation examples:
+- Average price by genre
+- Author with most books
+- Books grouped by decade
+
+All queries are included in queries.js and can be tested using mongosh or MongoDB Compass.
+
+## How to Test in Compass / mongosh
+- Open MongoDB Compass or connect with mongosh.
+- Connect using:
+``` bash
+mongodb://localhost:27017/
+``` 
+- Use the database:
+
+js
+``` bash
+use plp_bookstore
+``` 
+- Test queries like:
+
+js
+``` bash
+db.books.find({ genre: "Fiction" })
+db.books.find({ price: { $gt: 10 } }).sort({ price: 1 })
+db.books.aggregate([{ $group: { _id: "$genre", avgPrice: { $avg: "$price" } } }])
+``` 
